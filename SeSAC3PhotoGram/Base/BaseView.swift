@@ -13,7 +13,7 @@ class BaseView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
-        setConstraints()
+        
         
     }
     
@@ -21,7 +21,12 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setNeedsLayout() {
+        setConstraints()
+    }
+    
     func configureView() {
+        backgroundColor = .systemBackground
         
     }
     

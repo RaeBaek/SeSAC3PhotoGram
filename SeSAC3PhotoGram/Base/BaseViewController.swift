@@ -18,7 +18,7 @@ class BaseViewController: UIViewController { //UIViewConroller가 아닌 UIPageV
     }
     
     func configureView() { // addSubview
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         print("Base ConfigureView")
     }
     

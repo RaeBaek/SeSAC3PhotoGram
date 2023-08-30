@@ -11,11 +11,13 @@ class SearchViewController: BaseViewController {
     
     let mainView = SearchView()
     
+    // Protocol 값 전달 2.
+    var delegate: PassImageDataDelegate?
+    
     let imageList = ["pencil", "star", "person", "star.fill", "xmark", "person.circle"]
     
     override func loadView() {
         self.view = mainView
-        
     }
     
     override func viewDidLoad() {
@@ -23,6 +25,9 @@ class SearchViewController: BaseViewController {
         
         // addObserver보다 post가 먼저 신호를 보내면 addObserver가 신호를 받지 못한다!
         NotificationCenter.default.addObserver(self, selector: #selector(recommandKeywordNotificationObserver), name: NSNotification.Name("RecommandKeyword"), object: nil)
+        
+        mainView.searchBar.becomeFirstResponder()
+        mainView.searchBar.delegate = self
         
     }
     
@@ -35,6 +40,15 @@ class SearchViewController: BaseViewController {
         
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
+        
+    }
+    
+}
+
+extension SearchViewController: UISearchBarDelegate {
+ 
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        mainView.searchBar.resignFirstResponder()
         
     }
     
@@ -59,11 +73,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         print(imageList[indexPath.item])
         
-        NotificationCenter.default.post(name: NSNotification.Name("SelectImage"), object: nil, userInfo: ["name": imageList[indexPath.item], "sample": "고래밥"])
+        // Protocol 값 전달 3.
+        delegate?.receiveImageData(image: UIImage(systemName: imageList[indexPath.item])!)
         
-        print("디스미스 전")
+//        NotificationCenter.default.post(name: NSNotification.Name("SelectImage"), object: nil, userInfo: ["name": imageList[indexPath.item], "sample": "고래밥"])
+        
         dismiss(animated: true)
-        print("디스미스 후")
     }
     
 }
