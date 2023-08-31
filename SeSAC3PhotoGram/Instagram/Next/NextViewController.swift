@@ -9,7 +9,7 @@ import UIKit
 
 class NextViewController: BaseViewController {
     
-    let nextView = NextView()
+    var nextView = NextView()
     var navigationTitle: String?
     
     // Protocol 값 전달 2.
@@ -24,7 +24,9 @@ class NextViewController: BaseViewController {
     }
     
     override func viewDidLoad() {
+        guard let navigationTitle = navigationTitle else { return }
         title = navigationTitle
+        nextView.titleLabel.text = "\(navigationTitle):"
         nextView.textField.becomeFirstResponder()
     }
     

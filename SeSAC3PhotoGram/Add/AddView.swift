@@ -19,6 +19,7 @@ class AddView: BaseView {
     
     let searchButton = {
         let view = UIButton()
+        view.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         view.backgroundColor = .systemGreen
         return view
     }()

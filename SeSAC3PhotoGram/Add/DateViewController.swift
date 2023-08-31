@@ -18,17 +18,21 @@ class DateViewController: BaseViewController {
         self.view = mainView
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        // Protocol 값 전달 3.
-        delegate?.receiveDate(date: mainView.picker.date)
-        
+    deinit {
+        print("deinit", self)
     }
     
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
         super.viewDidLoad()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // Protocol 값 전달 3.
+        delegate?.receiveDate(date: mainView.picker.date)
         
     }
     

@@ -34,5 +34,4 @@ class BaseView: UIView {
         
     }
     
-    
 }

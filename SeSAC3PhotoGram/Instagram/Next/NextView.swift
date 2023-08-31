@@ -9,10 +9,20 @@ import UIKit
 
 class NextView: BaseView {
     
+    let titleLabel = {
+        let view = UILabel()
+        view.setContentHuggingPriority(.init(251), for: .horizontal)
+        view.setContentCompressionResistancePriority(.init(750), for: .horizontal)
+        view.font = .systemFont(ofSize: 17, weight: .medium)
+        view.textColor = .black
+        return view
+    }()
+    
     let textField = {
         let view = UITextField()
+        view.setContentHuggingPriority(.init(250), for: .horizontal)
+        view.setContentCompressionResistancePriority(.init(751), for: .horizontal)
         view.font = .systemFont(ofSize: 17, weight: .regular)
-        view.borderStyle = .line
         return view
     }()
     
@@ -29,6 +39,7 @@ class NextView: BaseView {
     override func configureView() {
         super.configureView()
         
+        addSubview(titleLabel)
         addSubview(textField)
         addSubview(lineView)
         
@@ -37,8 +48,14 @@ class NextView: BaseView {
     override func setConstraints() {
         super.setConstraints()
         
+        titleLabel.snp.makeConstraints {
+            $0.top.leading.equalTo(self.safeAreaLayoutGuide).offset(16)
+        }
+        
         textField.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(16)
+            $0.centerY.equalTo(titleLabel)
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(5)
+            $0.trailing.equalTo(self.safeAreaLayoutGuide).offset(-16)
             $0.height.equalTo(35)
         }
         

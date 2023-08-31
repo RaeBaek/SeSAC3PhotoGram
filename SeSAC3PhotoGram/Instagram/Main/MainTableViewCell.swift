@@ -16,10 +16,12 @@ class MainTableViewCell: BaseTableViewCell {
         return view
     }()
     
-    let subtitleLabel = {
-        let view = UILabel()
+    let titleTextField = {
+        let view = UITextField()
         view.font = .systemFont(ofSize: 17, weight: .regular)
         view.textColor = .black
+        view.borderStyle = .none
+        view.isEnabled = false
         return view
     }()
     
@@ -34,7 +36,7 @@ class MainTableViewCell: BaseTableViewCell {
     override func configureCell() {
         super.configureCell()
         
-        [titleLabel, subtitleLabel, nextImage].forEach {
+        [titleLabel, titleTextField, nextImage].forEach {
             contentView.addSubview($0)
         }
     }
@@ -54,7 +56,7 @@ class MainTableViewCell: BaseTableViewCell {
             $0.size.equalTo(15)
         }
         
-        subtitleLabel.snp.makeConstraints {
+        titleTextField.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(titleLabel.snp.trailing).offset(16)
             $0.trailing.equalTo(nextImage.snp.leading).offset(-16)

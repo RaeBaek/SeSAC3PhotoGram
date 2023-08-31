@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class MainView: BaseView {
     
     let mainTableView = {
