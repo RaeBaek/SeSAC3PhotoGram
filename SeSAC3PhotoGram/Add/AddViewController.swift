@@ -37,7 +37,9 @@ class AddViewController: BaseViewController {
         ClassPublicExample.publicExample()
 //        ClassPublicExample.internalExample()
         
-        APIService.shared.callRequest()
+        APIService.shared.callRequest(query: "sky") { _ in
+            
+        }
         
     }
     
